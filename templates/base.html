@@ -52,7 +52,14 @@
 </nav>
 <div class="container">
     <div class="row">
-        <h2>hello bitch {{ n }}</h2>
+        <h1>
+            {% block content_title %}
+
+            {% endblock %}
+        </h1>
+    {% block content %}
+
+    {% endblock %}
     </div>
 </div>
 </body>
