@@ -7,7 +7,8 @@ poster = Blueprint('about', __name__, template_folder='templates')
 
 @posts.route('/')
 def index():
-    return render_template('posts/index.html')
+    posts = Post.query.all()
+    return render_template('posts/index.html', posts=posts)
 
 @posts.route('/')
 def about():
