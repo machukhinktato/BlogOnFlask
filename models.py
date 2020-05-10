@@ -32,8 +32,9 @@ class Tag(db.Model):
     slug = db.Column(db.String(100))
 
     def __init__(self, *args, **kwargs):
-        super(Tag.self).__init__(*args, **kwargs)
+        super(Tag, self).__init__(*args, **kwargs)
+        self.slug = slugify(self.name)
 
 
     def __repr__(self):
-        return f'<Tag id: {self.id}, name: {self.name}'
+        return f'<Tag id: {self.id}, name: {self.name}>'
