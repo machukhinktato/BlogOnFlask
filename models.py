@@ -26,6 +26,14 @@ class Post(db.Model):
         super(Post, self).__init__(*args, **kwargs)
         self.generate_slug()
 
+    tags = db.relationship(
+        'Tag',
+        secondary=post_tags,
+        backref=db.backref(
+            'posts',
+            lazy='dynamic'
+        ))
+
     def generate_slug(self):
         if self.title:
             self.slug = slugify(self.title)
@@ -42,6 +50,7 @@ class Tag(db.Model):
     def __init__(self, *args, **kwargs):
         super(Tag, self).__init__(*args, **kwargs)
         self.slug = slugify(self.name)
+
 
     def __repr__(self):
         return f'<Tag id: {self.id}, name: {self.name}>'
