@@ -8,7 +8,7 @@ def slugify(s):
     return re.sub(pattern, '-', s)
 
 
-post_tags = db.table(
+post_tags = db.Table(
     'post_tags',
     db.Column('post_id', db.Integer, db.ForeignKey('post.id')),
     db.Column('tag_id', db.Integer, db.ForeignKey('tag.id')),
