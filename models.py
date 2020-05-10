@@ -2,9 +2,17 @@ from app import db
 from datetime import datetime
 import re
 
+
 def slugify(s):
     pattern = r'[^\w+]'
     return re.sub(pattern, '-', s)
+
+
+post_tags = db.table(
+    'post_tags',
+    db.Column('post_id', db.Integer, db.ForeignKey('post.id')),
+    db.Column('tag_id', db.Integer, db.ForeignKey('tag.id')),
+)
 
 
 class Post(db.Model):
@@ -34,7 +42,6 @@ class Tag(db.Model):
     def __init__(self, *args, **kwargs):
         super(Tag, self).__init__(*args, **kwargs)
         self.slug = slugify(self.name)
-
 
     def __repr__(self):
         return f'<Tag id: {self.id}, name: {self.name}>'
