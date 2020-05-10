@@ -2,13 +2,13 @@
 
 
 {% block title %}
-    about
+    {{ post.title }}
 {% endblock %} | Flask App
 
 {% block content_title %}
-    about us
+    {{ post.title }}
 {% endblock %}
 
 {% block content %}
-    there is no content for u
+    {{ post.body }}
 {% endblock %}
