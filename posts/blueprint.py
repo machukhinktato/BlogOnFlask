@@ -49,7 +49,7 @@ def index():
 
         pages = posts.paginate(page=page, per_page=3)
 
-    return render_template('posts/index.html', posts=posts, pages=pages)
+    return render_template('posts/index.html', pages=pages)
 
 
 
