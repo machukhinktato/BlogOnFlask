@@ -1,6 +1,8 @@
 from flask import Blueprint
 from flask import render_template
 from flask import request
+from flask import url_for
+from flask import redirect
 from models import *
 from .forms import PostForm
 from app import db
@@ -19,6 +21,9 @@ def create_post():
             db.session.commit
         except:
             print('Something going wrong')
+
+        return redirect( url_for('posts.index'))
+
     form = PostForm()
     return render_template('posts/create_post.html', form=form)
 
