@@ -45,7 +45,7 @@ def index():
             |
             Post.body.contains(q))
     else:
-        posts = Post.query.order_by(Post.created.desc())
+        posts = Post.query.order_by(Post.created.desc())#.all()
 
         pages = posts.paginate(page=page, per_page=3)
 
