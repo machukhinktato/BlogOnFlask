@@ -2,6 +2,7 @@ from app import db
 from datetime import datetime
 from time import time
 import re
+from flask_security import UserMixin, RoleMixin
 
 
 def slugify(s):
@@ -55,3 +56,10 @@ class Tag(db.Model):
 
     def __repr__(self):
         return f'<Tag id: {self.id}, name: {self.name}>'
+
+
+class User(db.Model, UserMixin):
+    id = db.Column(db.Integer(), primary_key=True)
+    email = db.Column(db.String(100), unique=True)
+    password = db.Column(db.String(255))
+    active = db.Column(db.Boolean())
