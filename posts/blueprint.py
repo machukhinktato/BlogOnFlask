@@ -18,7 +18,7 @@ def create_post():
         try:
             post = Post(title=title, body=body)
             db.session.add(post)
-            db.session.commit
+            db.session.commit()
         except:
             print('Something going wrong')
 
@@ -38,7 +38,7 @@ def index():
             |
             Post.body.contains(q)).all()
     else:
-        posts = Post.query.all()
+        posts = Post.query.order_by(Post.created.desc())
     return render_template('posts/index.html', posts=posts)
 
 @posts.route('/<slug>')
