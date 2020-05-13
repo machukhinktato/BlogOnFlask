@@ -19,8 +19,17 @@
 
     <nav>
         <ul class="pagination">
-            <li {% if not pages.has_prev %} class="disabled" {% endif %}><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-            <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+            <li {% if not pages.has_prev %}
+                class="disabled" {% endif %}>
+                <a href="./?page={{ pages.prev_num }}" aria-label="Previous"><span
+                        aria-hidden="true">&laquo;</span></a>
+            </li>
+            <li class="active"><a href="">1 <span class="sr-only">(current)</span></a></li>
+            <li {% if not pages.has_next %}
+                class="disabled" {% endif %}>
+                <a href="./?page={{ pages.next_num }}" aria-label="Previous"><span
+                        aria-hidden="true">&laquo;</span></a>
+            </li>
         </ul>
     </nav>
 
