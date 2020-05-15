@@ -18,11 +18,7 @@ migrate = Migrate(app, db)
 manager = Manager(app)
 manager.add_command('db', MigrateCommand)
 
-user_datastore = SQLAlchemyUserDatastore(db, User, Role)
-security = Security(app, user_datastore)
-
 from models import *
-
 
 class AdminView(ModelView):
     def is_accessible(self):
@@ -35,3 +31,7 @@ class AdminView(ModelView):
 admin = Admin(app)
 admin.add_view(AdminView(Post, db.session))
 admin.add_view(AdminView(Tag, db.session))
+
+
+user_datastore = SQLAlchemyUserDatastore(db, User, Role)
+security = Security(app, user_datastore)
