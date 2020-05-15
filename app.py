@@ -21,18 +21,26 @@ manager.add_command('db', MigrateCommand)
 
 from models import *
 
+
 class AdminView(ModelView):
     def is_accessible(self):
         return current_user.has_role('admin')
 
-    def inaccessible_callback(self, **kwargs):
+    def inaccessible_callback(self, name, **kwargs):
         return redirect(url_for('security.login', next=request.url))
 
 
-admin = Admin(app)
+class HomeAdminView(AdminIndexView):
+    def is_accessible(self):
+        return current_user.has_role('admin')
+
+    def inaccessible_callback(self, name, **kwargs):
+        return redirect(url_for('security.login', next=request.url))
+
+
+admin = Admin(app, 'FlaskApp @machukhinktato area', url='/', index_view=HomeAdminView(name='Home'))
 admin.add_view(AdminView(Post, db.session))
 admin.add_view(AdminView(Tag, db.session))
-
 
 user_datastore = SQLAlchemyUserDatastore(db, User, Role)
 security = Security(app, user_datastore)
