@@ -10,8 +10,6 @@ from flask_security import Security
 from flask_security import current_user
 from flask import redirect, url_for, request
 
-
-
 app = Flask(__name__)
 app.config.from_object(Configuration)
 db = SQLAlchemy(app)
@@ -35,5 +33,5 @@ class AdminView(ModelView):
 
 
 admin = Admin(app)
-admin.add_view(ModelView(Post, db.session))
-admin.add_view(ModelView(Tag, db.session))
+admin.add_view(AdminView(Post, db.session))
+admin.add_view(AdminView(Tag, db.session))
