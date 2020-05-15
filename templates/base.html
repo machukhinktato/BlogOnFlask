@@ -57,7 +57,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     {% if current_user.has_role('admin') %}
-                        <a href="/admin">Admin Panel</a>
+                        <a href="/admin" class="label label-warning">Admin Panel</a>
                     {% endif %}
                 </li>
             </ul>
