@@ -22,7 +22,7 @@ manager.add_command('db', MigrateCommand)
 from models import *
 
 
-class AdminView(ModelView):
+class AdminMixin():
     def is_accessible(self):
         return current_user.has_role('admin')
 
@@ -30,12 +30,12 @@ class AdminView(ModelView):
         return redirect(url_for('security.login', next=request.url))
 
 
-class HomeAdminView(AdminIndexView):
-    def is_accessible(self):
-        return current_user.has_role('admin')
+class AdminView(AdminMixin, ModelView):
+    pass
 
-    def inaccessible_callback(self, name, **kwargs):
-        return redirect(url_for('security.login', next=request.url))
+
+class HomeAdminView(AdminMixin, AdminIndexView):
+    pass
 
 
 admin = Admin(app, 'FlaskApp @machukhinktato area', url='/', index_view=HomeAdminView(name='Home'))
