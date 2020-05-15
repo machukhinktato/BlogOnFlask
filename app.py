@@ -47,11 +47,11 @@ class HomeAdminView(AdminMixin, AdminIndexView):
 
 
 class PostAdminView(AdminMixin, BaseModelView):
-    pass
+    form_columns = ['title', 'body']
 
 
 class TagAdminView(AdminMixin, BaseModelView):
-    pass
+    form_columns = ['name']
 
 
 admin = Admin(app, 'FlaskApp @machukhinktato area', url='/', index_view=HomeAdminView(name='Home'))
