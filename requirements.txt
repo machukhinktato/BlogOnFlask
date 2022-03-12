@@ -34,7 +34,7 @@ mysql-connector-python==8.0.20
 Naked==0.1.31
 oauthlib==3.1.0
 packaging==20.3
-Pillow==7.0.0
+Pillow==9.0.1
 psycopg2==2.8.4
 pycodestyle==2.5.0
 pycryptodome==3.9.7
